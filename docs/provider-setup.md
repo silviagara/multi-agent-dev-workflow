@@ -148,7 +148,7 @@ Edit `openclaw.json` directly (stop the gateway first):
 {
   "models": {
     "providers": {
-      "azure-mindsight": {
+      "azure-openai": {
         "baseUrl": "https://YOUR-REGION.api.cognitive.microsoft.com/openai/v1",
         "api": "openai-completions",
         "authHeader": false,
@@ -177,10 +177,10 @@ Edit `openclaw.json` directly (stop the gateway first):
 **Step 2 — Set as primary or fallback:**
 ```bash
 # As primary
-openclaw config set agents.defaults.model.primary "azure-mindsight/gpt-5-4"
+openclaw config set agents.defaults.model.primary "azure-openai/gpt-5-4"
 
 # As fallback (after Bedrock)
-openclaw config set agents.defaults.model.fallbacks '["azure-mindsight/gpt-5-4"]'
+openclaw config set agents.defaults.model.fallbacks '["azure-openai/gpt-5-4"]'
 ```
 
 ### Gotchas
@@ -197,7 +197,7 @@ Set up a fallback chain so if your primary provider is down, the agent automatic
 
 ```bash
 openclaw config set agents.defaults.model.primary "amazon-bedrock/eu.anthropic.claude-sonnet-4-6"
-openclaw config set agents.defaults.model.fallbacks '["amazon-bedrock/eu.anthropic.claude-opus-4-6-v1", "azure-mindsight/gpt-5-4", "azure-gpt/gpt-5-3"]'
+openclaw config set agents.defaults.model.fallbacks '["amazon-bedrock/eu.anthropic.claude-opus-4-6-v1", "azure-openai/gpt-5-4", "azure-gpt/gpt-5-3"]'
 ```
 
 The gateway tries each model in order until one succeeds. This gives you:
