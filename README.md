@@ -98,6 +98,39 @@ It is a practical workflow for supervised, high-agency development with AI agent
 - **Human approval stays at key decision points**
 - **Good agent behavior comes from clear operating constraints**
 
+## What production teaches you
+
+Designing a multi-agent workflow on paper is the easy part. A few principles — well
+known in the human-in-the-loop and multi-agent literature — matter far more once the
+system is actually doing work:
+
+- **An agent's confidence is not evidence.** Models will report a task as done, a state as
+  safe, or a file as written with complete conviction and be wrong; treat every consequential
+  claim as a hypothesis to verify against a real artifact, not a fact.
+
+- **Put the human at the decisions, not in the loop of every step.** Approval gates belong on
+  the actions that are hard to undo — merges, deploys, anything touching production or
+  credentials — and nowhere else, or the human becomes the bottleneck the system was meant to remove.
+
+- **Make actions reversible before you make them autonomous.** An agent you can let run is one
+  whose mistakes you can cheaply undo; branches, backups, and staged changes are what turn
+  "risky" into "acceptable."
+
+- **State that isn't written down doesn't exist to the next session.** Agents wake up blank, so
+  the memory you persist — decisions, constraints, what went wrong last time — is the only thing
+  separating an assistant that repeats mistakes from one that compounds knowledge.
+
+- **Least privilege isn't just security, it's blast-radius control.** An agent that can only reach
+  what its current task needs will fail small when it fails; broad standing access turns a single
+  bad step into a wide mess.
+
+- **Narrow, verifiable steps beat clever end-to-end runs.** A chain of small actions you can each
+  inspect is easier to trust, debug, and recover than one impressive leap whose failure you can't localize.
+
+- **The orchestrator's real job is scoping, not doing.** Most of the value in a coordinating agent
+  comes from turning a vague goal into a bounded, well-specified task — get that wrong and no amount
+  of downstream capability saves the run.
+  
 ## What you need to replicate this
 
 At minimum, you need:
